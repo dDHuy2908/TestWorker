@@ -2,18 +2,12 @@ package com.ddhuy4298.testworker.fragments;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.databinding.DataBindingUtil;
 
 import com.ddhuy4298.testworker.JobListCallback;
 import com.ddhuy4298.testworker.R;
-import com.ddhuy4298.testworker.activities.LoginActivity;
 import com.ddhuy4298.testworker.adapters.NewJobAdapter;
 import com.ddhuy4298.testworker.databinding.FragmentNewJobBinding;
 import com.ddhuy4298.testworker.listener.NewJobClickedListener;
@@ -37,7 +31,6 @@ public class NewJobFragment extends BaseFragment<FragmentNewJobBinding> implemen
             .getReference("Users").child("Worker").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("job");
 
     private ArrayList<String> jobList = new ArrayList<>();
-    private ArrayList<String> jobList1 = new ArrayList<>();
     private ArrayList<NewJob> data = new ArrayList<>();
 
     @Override
@@ -49,8 +42,8 @@ public class NewJobFragment extends BaseFragment<FragmentNewJobBinding> implemen
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-
         adapter = new NewJobAdapter(getLayoutInflater());
+        binding.rvNewJob.setAdapter(adapter);
 
         jobReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -92,8 +85,6 @@ public class NewJobFragment extends BaseFragment<FragmentNewJobBinding> implemen
             }
         });
 
-        adapter.setData(data);
-        binding.rvNewJob.setAdapter(adapter);
         adapter.setListener(this);
     }
 
