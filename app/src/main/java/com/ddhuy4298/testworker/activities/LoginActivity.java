@@ -83,8 +83,8 @@ public class LoginActivity extends AppCompatActivity implements LoginItemListene
             return;
         }
 
-        binding.edtEmail.setText("b@gmail.com");
-        binding.edtPassword.setText("123456");
+//        binding.edtEmail.setText("b@gmail.com");
+//        binding.edtPassword.setText("123456");
     }
 
     /**
@@ -139,7 +139,6 @@ public class LoginActivity extends AppCompatActivity implements LoginItemListene
                                             for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                                                 String s = snapshot.getKey();
                                                 FirebaseMessaging.getInstance().subscribeToTopic(s);
-                                                Toast.makeText(LoginActivity.this, "Sub", Toast.LENGTH_SHORT).show();
                                             }
                                         }
 

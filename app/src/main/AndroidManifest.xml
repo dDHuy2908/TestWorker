@@ -20,11 +20,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.MainActivity"/>
+        <activity android:name=".activities.MainActivity"
+            android:launchMode="singleInstance"/>
         <activity
             android:name=".activities.RegisterActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activities.JobActivity" />
+        <activity android:name=".activities.JobDetailActivity" />
         <service
             android:name=".services.FCMService"
             android:exported="false">

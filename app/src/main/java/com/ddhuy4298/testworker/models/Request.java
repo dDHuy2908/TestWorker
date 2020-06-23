@@ -1,6 +1,11 @@
 package com.ddhuy4298.testworker.models;
 
-public class NewJob {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
+public class Request implements Serializable {
 
     private String address;
     private String date;
@@ -8,6 +13,15 @@ public class NewJob {
     private String userId;
     private String job;
     private String requestId;
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public String getRequestId() {
         return requestId;

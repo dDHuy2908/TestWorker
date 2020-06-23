@@ -9,10 +9,6 @@
         android:title="Received"
         android:icon="@drawable/ic_history" />
     <item
-        android:id="@+id/bottom_nav_notification"
-        android:title="Notification"
-        android:icon="@drawable/ic_notification" />
-    <item
         android:id="@+id/bottom_nav_account"
         android:title="Account"
         android:icon="@drawable/ic_account" />

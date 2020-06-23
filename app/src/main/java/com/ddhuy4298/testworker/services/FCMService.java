@@ -10,9 +10,12 @@ import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 
 import com.ddhuy4298.testworker.R;
+import com.ddhuy4298.testworker.activities.LoginActivity;
 import com.ddhuy4298.testworker.activities.MainActivity;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+
+import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
 
 public class FCMService extends FirebaseMessagingService {
 

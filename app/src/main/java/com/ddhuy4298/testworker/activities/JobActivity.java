@@ -32,7 +32,6 @@ public class JobActivity extends AppCompatActivity implements View.OnClickListen
     private ArrayList<Job> data = new ArrayList<>();
     private int checked = 0;
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-    private String selectedJob = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -82,7 +81,6 @@ public class JobActivity extends AppCompatActivity implements View.OnClickListen
                     }
                 }
             });
-
         }
 
         Intent intent = new Intent(this, MainActivity.class);

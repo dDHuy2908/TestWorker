@@ -17,9 +17,8 @@ import com.ddhuy4298.testworker.R;
 import com.ddhuy4298.testworker.databinding.ActivityMainBinding;
 import com.ddhuy4298.testworker.fragments.AccountFragment;
 import com.ddhuy4298.testworker.fragments.BaseFragment;
-import com.ddhuy4298.testworker.fragments.NewJobFragment;
-import com.ddhuy4298.testworker.fragments.NotificationFragment;
-import com.ddhuy4298.testworker.fragments.ReceivedJobFragment;
+import com.ddhuy4298.testworker.fragments.RequestFragment;
+import com.ddhuy4298.testworker.fragments.AcceptedRequestFragment;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -29,10 +28,21 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     private ActivityMainBinding binding;
 
-    private NewJobFragment fmNewJob = new NewJobFragment();
-    private ReceivedJobFragment fmReceivedJob = new ReceivedJobFragment();
-    private NotificationFragment fmNotification = new NotificationFragment();
+    private RequestFragment fmNewJob = new RequestFragment();
+    private AcceptedRequestFragment fmAcceptedJob = new AcceptedRequestFragment();
     private AccountFragment fmAccount = new AccountFragment();
+
+    public RequestFragment getFmNewJob() {
+        return fmNewJob;
+    }
+
+    public AcceptedRequestFragment getFmAcceptedJob() {
+        return fmAcceptedJob;
+    }
+
+    public AccountFragment getFmAccount() {
+        return fmAccount;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +63,44 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         initFragment();
         binding.bottomNav.setOnNavigationItemSelectedListener(MainActivity.this);
+
+        Log.e(getClass().getName(), "onCreate");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.e(getClass().getName(), "onStart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e(getClass().getName(), "onResume");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.e(getClass().getName(), "onPause");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.e(getClass().getName(), "onRestart");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.e(getClass().getName(), "onStop");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.e(getClass().getName(), "onDestroy");
     }
 
     /**
@@ -72,8 +120,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private void initFragment() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.container, fmNewJob);
-        transaction.add(R.id.container, fmReceivedJob);
-        transaction.add(R.id.container, fmNotification);
+        transaction.add(R.id.container, fmAcceptedJob);
         transaction.add(R.id.container, fmAccount);
         transaction.commit();
         showFragment(fmNewJob);
@@ -84,8 +131,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_right, R.anim.exit_to_left);
         transaction.hide(fmNewJob);
-        transaction.hide(fmReceivedJob);
-        transaction.hide(fmNotification);
+        transaction.hide(fmAcceptedJob);
         transaction.hide(fmAccount);
         transaction.show(fmShow);
         transaction.commit();
@@ -100,30 +146,19 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 binding.bottomNav.getMenu().getItem(0).setEnabled(false);
                 binding.bottomNav.getMenu().getItem(1).setEnabled(true);
                 binding.bottomNav.getMenu().getItem(2).setEnabled(true);
-                binding.bottomNav.getMenu().getItem(3).setEnabled(true);
                 break;
             case R.id.bottom_nav_received_job:
-                showFragment(fmReceivedJob);
+                showFragment(fmAcceptedJob);
                 binding.bottomNav.getMenu().getItem(1).setChecked(true);
                 binding.bottomNav.getMenu().getItem(1).setEnabled(false);
                 binding.bottomNav.getMenu().getItem(0).setEnabled(true);
                 binding.bottomNav.getMenu().getItem(2).setEnabled(true);
-                binding.bottomNav.getMenu().getItem(3).setEnabled(true);
-                break;
-            case R.id.bottom_nav_notification:
-                showFragment(fmNotification);
-                binding.bottomNav.getMenu().getItem(2).setChecked(true);
-                binding.bottomNav.getMenu().getItem(2).setEnabled(false);
-                binding.bottomNav.getMenu().getItem(1).setEnabled(true);
-                binding.bottomNav.getMenu().getItem(0).setEnabled(true);
-                binding.bottomNav.getMenu().getItem(3).setEnabled(true);
                 break;
             case R.id.bottom_nav_account:
                 showFragment(fmAccount);
-                binding.bottomNav.getMenu().getItem(3).setChecked(true);
-                binding.bottomNav.getMenu().getItem(3).setEnabled(false);
+                binding.bottomNav.getMenu().getItem(2).setChecked(true);
+                binding.bottomNav.getMenu().getItem(2).setEnabled(false);
                 binding.bottomNav.getMenu().getItem(1).setEnabled(true);
-                binding.bottomNav.getMenu().getItem(2).setEnabled(true);
                 binding.bottomNav.getMenu().getItem(0).setEnabled(true);
                 break;
         }
