@@ -4,21 +4,11 @@ public class Job {
 
     private Integer image;
     private String service;
-    private String englishService;
     private boolean checked = false;
 
-    public Job(Integer image, String service, String englishService) {
+    public Job(Integer image, String service) {
         this.image = image;
         this.service = service;
-        this.englishService = englishService;
-    }
-
-    public String getEnglishService() {
-        return englishService;
-    }
-
-    public void setEnglishService(String englishService) {
-        this.englishService = englishService;
     }
 
     public boolean isChecked() {

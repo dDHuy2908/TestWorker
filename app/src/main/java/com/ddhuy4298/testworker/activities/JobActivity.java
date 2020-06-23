@@ -47,14 +47,14 @@ public class JobActivity extends AppCompatActivity implements View.OnClickListen
     private void initJob() {
         adapter = new JobAdapter(getLayoutInflater());
         data.clear();
-        data.add(new Job(R.drawable.ic_house_cleaning, "Dọn nhà", "HouseCleaning"));
-        data.add(new Job(R.drawable.ic_house_transfer, "Chuyển nhà", "HouseTransfer"));
-        data.add(new Job(R.drawable.ic_cooking, "Nấu ăn", "Cooking"));
-        data.add(new Job(R.drawable.ic_washing, "Giặt là", "Washing"));
-        data.add(new Job(R.drawable.ic_electronic_repair, "Sửa chữa đồ điện", "Electronic"));
-        data.add(new Job(R.drawable.ic_computer_repair, "Sửa chữa máy tính", "Computer"));
-        data.add(new Job(R.drawable.ic_water_repair, "Sửa chữa đường nước", "Water"));
-        data.add(new Job(R.drawable.ic_repaint, "Sơn sửa nhà cửa", "Repaint"));
+        data.add(new Job(R.drawable.ic_house_cleaning, "HouseCleaning"));
+        data.add(new Job(R.drawable.ic_house_transfer, "HouseTransfer"));
+        data.add(new Job(R.drawable.ic_cooking, "Cooking"));
+        data.add(new Job(R.drawable.ic_washing, "Washing"));
+        data.add(new Job(R.drawable.ic_electronic_repair, "Electronic"));
+        data.add(new Job(R.drawable.ic_computer_repair, "Computer"));
+        data.add(new Job(R.drawable.ic_water_repair, "Water"));
+        data.add(new Job(R.drawable.ic_repaint, "Repaint"));
         if (adapter != null) {
             adapter.setData(data);
             adapter.setListener(this);
@@ -68,9 +68,9 @@ public class JobActivity extends AppCompatActivity implements View.OnClickListen
         DatabaseReference reference = FirebaseDatabase.getInstance()
                 .getReference("Users").child("Worker").child(firebaseAuth.getCurrentUser().getUid()).child("job");
         for (Job job : checkedJob) {
-            reference.child(job.getEnglishService()).setValue(true);
+            reference.child(job.getService()).setValue(true);
 
-            FirebaseMessaging.getInstance().subscribeToTopic(job.getEnglishService())
+            FirebaseMessaging.getInstance().subscribeToTopic(job.getService())
             .addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {

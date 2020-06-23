@@ -22,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
@@ -112,8 +113,8 @@ public class RequestFragment extends BaseFragment<FragmentNewJobBinding> impleme
     @Override
     public void onRequestClick(Request request) {
         Intent intent = new Intent(getActivity(), JobDetailActivity.class);
-        intent.putExtra(REQUEST_ID, request);
-        startActivityForResult(intent, REQUEST_CODE);
+        intent.putExtra(REQUEST_ID, (Serializable) request);
+        startActivity(intent);
     }
 
     @Override
